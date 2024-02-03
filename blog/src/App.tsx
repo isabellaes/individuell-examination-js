@@ -1,19 +1,22 @@
-import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./style/main.scss";
 import HomePage from "./pages/HomePage";
-import { FetchAllPosts } from "./api";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import BlogPage from "./pages/BlogPage";
+import PostPage from "./pages/PostPage";
+
 function App() {
-  const [posts, setPosts] = useState();
-  FetchAllPosts();
-  //Hämta user
-  //lägg upp router baserat på inloggat läge eller ej
   return (
     <>
       <BrowserRouter>
+        <Header />
         <Routes>
-          <Route index element={<HomePage></HomePage>} />
+          <Route index element={<HomePage />} />
+          <Route path="blog/:Id" element={<BlogPage />} />
+          <Route path="post/:Id" element={<PostPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

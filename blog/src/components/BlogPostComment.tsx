@@ -1,7 +1,14 @@
-const BlogPostComment = () => {
+import { PostComment } from "../types";
+
+interface Props {
+  comment: PostComment;
+}
+
+const BlogPostComment = (comment: Props) => {
   return (
     <div className="blogpost-comment">
-      <h1>Comment</h1>
+      <p>{comment.comment.body}</p>
+      <p>{comment.comment.name}</p>
     </div>
   );
 };

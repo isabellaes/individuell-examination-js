@@ -1,0 +1,23 @@
+@import "./components/footer";
+@import "./components/header";
+@import "./pages/homePage";
+@import "./functions/mixin";
+@import "./components/layout";
+@import "./pages/blogPage";
+@import "./components/blogPost";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  font-family: "Inter", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Josefin Slab", serif;
+}

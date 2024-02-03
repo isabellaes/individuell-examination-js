@@ -1,7 +1,7 @@
 //interface
 
 interface Post {
-  id: number;
+  id: string;
   body: string;
   title: string;
   userId: number;
@@ -9,21 +9,21 @@ interface Post {
 
 interface PostComment {
   postId: string;
-  id: number;
+  id: string;
   name: string;
   email: string;
   body: string;
 }
 
 interface User {
-  id: number;
+  id: string;
   name: string;
   email: string;
   username: string;
 }
 
 interface ApiResponse {
-  data: User | Post[] | PostComment[];
+  data: User | User[] | Post[] | PostComment[];
   status: number;
 }
 
