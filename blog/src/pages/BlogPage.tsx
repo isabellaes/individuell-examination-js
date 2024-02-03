@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Post, User } from "../types";
-import { getCommentsByPostId, getPostByUserId, getUser } from "../api";
+import { getPostByUserId, getUser } from "../api";
 import { useNavigate, useParams } from "react-router-dom";
 import BlogPost from "../components/BlogPost";
 
