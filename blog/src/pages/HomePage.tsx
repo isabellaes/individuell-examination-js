@@ -35,3 +35,15 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+/* 
+
+- Fixa styling
+- Delete post
+- Update post 
+- Förbättra kodstruktur
+- Ta bort möjligheten att se andras bloggar? 
+- Se över komponenter, kanske de går att förbättra 
+- lägg till funktion för att kommentera 
+
+*/
