@@ -4,7 +4,7 @@ interface Post {
   id: string;
   body: string;
   title: string;
-  userId: number;
+  userId: string;
 }
 
 interface PostComment {

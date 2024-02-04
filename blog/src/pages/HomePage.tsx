@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
 import { User } from "../types";
-import { getUsers } from "../api";
+import { fetchAllUsers } from "../store/userSlice";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useAppDispatch, RootState } from "../store/store";
 
 const HomePage = () => {
   const [users, setUsers] = useState<User[]>();
+  const dispatch = useAppDispatch();
+  const user = useSelector((state: RootState) => state.user.users);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await getUsers();
-        if (typeof result === "object" && Array.isArray(result)) {
-          setUsers(result);
-        }
-      } catch (error) {
-        console.error("Error fetching post:", error);
-      }
-    };
-    fetchData();
-  }, []);
+    dispatch(fetchAllUsers());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user) setUsers(user);
+  }, [user]);
 
   return (
     <div className="home-container">
