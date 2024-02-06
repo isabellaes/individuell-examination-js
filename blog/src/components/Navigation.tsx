@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../store/store";
 import { fetchAllUsers } from "../store/userSlice";
 import { fetchAllPosts } from "../store/postSlice";
+import SearchResultsPage from "../pages/SearchResultsPage";
 
 const Navigation = () => {
   const dispatch = useAppDispatch();
@@ -32,6 +33,7 @@ const Navigation = () => {
         </Route>
         <Route path="blog/:Id" element={<BlogPage />} />
         <Route path="post/:Id" element={<PostPage />} />
+        <Route path="search" element={<SearchResultsPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
