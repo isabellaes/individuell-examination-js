@@ -1,34 +1,35 @@
 //interface
 
 interface Post {
-  id: string;
+  id: number;
   body: string;
   title: string;
-  userId: string;
+  userId: number;
 }
 
 interface PostComment {
-  postId: string;
-  id: string;
+  postId: number;
+  id: number;
   name: string;
   email: string;
   body: string;
 }
 
 interface User {
-  id: string;
+  id: number;
   name: string;
   email: string;
   username: string;
 }
 
-interface ApiResponse {
-  data: User | User[] | Post[] | PostComment[];
+interface ApiResponse<T> {
+  data: T;
   status: number;
 }
 
 interface ApiError {
-  message: any;
+  message: string;
+  status: number;
 }
 
 export type { Post, PostComment, User, ApiResponse, ApiError };

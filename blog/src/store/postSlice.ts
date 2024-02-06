@@ -1,54 +1,99 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getPostByPostId, getPostsByUserId } from "../api";
-import { Post } from "../types";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { updatePost, createPost, getAllPosts } from "../api";
+import { ApiError, Post } from "../types";
 
 interface PostState {
-  post: Post | null;
-  allPosts: Post[] | null;
+  allPosts: Post[];
+  postsByUser: Post[];
 }
 
 const initialState: PostState = {
-  post: null,
-  allPosts: null,
+  allPosts: [],
+  postsByUser: [],
 };
 
-export const fetchPostByPostId = createAsyncThunk(
-  "fetchPostById",
-  // if you type your function argument here
-  async (userId: string) => {
-    const response = await getPostByPostId(userId);
-    console.log(response);
-    return response;
+export const fetchAllPosts = createAsyncThunk(
+  "allPosts",
+
+  async (): Promise<Post[] | ApiError> => {
+    try {
+      const response = await getAllPosts();
+      return response;
+    } catch (error) {
+      throw new Error("Something went wrong");
+    }
+  }
+);
+export const fetchUpdatePost = createAsyncThunk(
+  "updatePost",
+  async (post: Post): Promise<Post | string> => {
+    try {
+      const response = await updatePost(post);
+      return response;
+    } catch (error) {
+      throw new Error("Something went wrong");
+    }
   }
 );
 
-export const fetchAllPosts = createAsyncThunk(
-  "fetchAllPosts",
-
-  async (id: string) => {
-    const response = await getPostsByUserId(id);
-    console.log(response);
-    return response;
+export const fetchCreatePost = createAsyncThunk(
+  "createPost",
+  async (post: Post): Promise<Post | string> => {
+    try {
+      const response = await createPost(post);
+      return response;
+    } catch (error) {
+      throw new Error("Something went wrong");
+    }
   }
 );
 const postSlice = createSlice({
   name: "post",
   initialState,
-  reducers: {},
+  reducers: {
+    deletePost: (state, action: PayloadAction<number>) => {
+      const post = state.allPosts.find((post) => post.id === action.payload);
+      if (post) {
+        state.postsByUser = state.postsByUser?.filter(
+          (post) => post.id !== action.payload
+        );
+      }
+    },
+
+    setPostsByUser: (state, action: PayloadAction<number>) => {
+      const posts = state.allPosts.filter(
+        (post) => post.userId === action.payload
+      );
+      if (posts) {
+        state.postsByUser = posts;
+      }
+    },
+  },
   extraReducers: (builder) => {
-    builder.addCase(fetchPostByPostId.fulfilled, (state, action) => {
-      if (typeof action.payload === "object") {
-        state.post = action.payload;
+    builder.addCase(fetchAllPosts.fulfilled, (state, action) => {
+      if (Array.isArray(action.payload)) {
+        const posts: Post[] = action.payload;
+        state.allPosts = posts;
       }
     });
 
-    builder.addCase(fetchAllPosts.fulfilled, (state, action) => {
+    builder.addCase(fetchUpdatePost.fulfilled, (state, action) => {
       if (typeof action.payload === "object") {
-        state.allPosts = action.payload;
+        const updatedPost = action.payload;
+        state.postsByUser = state.postsByUser.map((post) =>
+          post.id === updatedPost.id ? updatedPost : post
+        );
+      }
+    });
+
+    builder.addCase(fetchCreatePost.fulfilled, (state, action) => {
+      if (typeof action.payload === "object") {
+        console.log(action.payload);
+        state.postsByUser.push(action.payload);
       }
     });
   },
 });
 
-export const {} = postSlice.actions;
+export const { deletePost, setPostsByUser } = postSlice.actions;
 export default postSlice.reducer;

@@ -1,66 +1,27 @@
 //api calls
 import axios, { AxiosResponse } from "axios";
-import { User, Post, PostComment } from "./types";
+import { User, Post, PostComment, ApiResponse, ApiError } from "./types";
 const url = "https://jsonplaceholder.typicode.com/";
 
-export const getAllUsers = async (): Promise<User[] | string> => {
+export const getAllUsers = async (): Promise<User[] | ApiError> => {
   try {
-    const { data } = await axios.get(
+    const data = await axios.get<User[]>(
       "https://jsonplaceholder.typicode.com/users/"
     );
-    console.log(data);
-    return data;
+    return data.data;
   } catch (error) {
-    console.log("error");
-    return "An error occurred during the API call.";
+    return { message: "An error occurred during the API call.", status: 500 };
   }
 };
 
-export const getUserById = async (id: string): Promise<User | string> => {
+export const getAllPosts = async (): Promise<Post[] | ApiError> => {
   try {
-    const { data } = await axios.get(
-      `https://jsonplaceholder.typicode.com/users/${id}`
+    const data = await axios.get<Post[]>(
+      "https://jsonplaceholder.typicode.com/posts/"
     );
-    return data;
+    return data.data;
   } catch (error) {
-    return "An error occurred during the API call.";
-  }
-};
-
-export const getPostByPostId = async (id: string): Promise<Post | string> => {
-  try {
-    const { data } = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${id}`
-    );
-    return data;
-  } catch (error) {
-    return "An error occurred during the API call.";
-  }
-};
-
-export const getPostsByUserId = async (
-  id: string
-): Promise<Post[] | string> => {
-  try {
-    const { data } = await axios.get(
-      `https://jsonplaceholder.typicode.com/users/${id}/posts`
-    );
-    return data;
-  } catch (error) {
-    return "An error occurred during the API call.";
-  }
-};
-
-export const getCommentsByPostId = async (
-  id: string
-): Promise<PostComment[] | string> => {
-  try {
-    const { data } = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${id}/comments`
-    );
-    return data;
-  } catch (error) {
-    return "An error occurred during the API call.";
+    return { message: "An error occurred during the API call.", status: 500 };
   }
 };
 
@@ -74,3 +35,53 @@ export const deletePostById = async (id: string): Promise<AxiosResponse> => {
     return error as AxiosResponse;
   }
 };
+
+export const updatePost = async (post: Post): Promise<Post | string> => {
+  try {
+    const result = await axios.put<Post>(
+      `https://jsonplaceholder.typicode.com/posts/${post.id}`,
+      {
+        id: post.id,
+        title: post.title,
+        body: post.body,
+        userId: post.userId,
+      }
+    );
+
+    return result.data;
+  } catch (error) {
+    return "Error accurd during fetch";
+  }
+};
+
+export const createPost = async (post: Post): Promise<Post | string> => {
+  try {
+    const result = await axios.post<Post>(
+      `https://jsonplaceholder.typicode.com/posts/`,
+      {
+        title: post.title,
+        body: post.body,
+        userId: post.userId,
+      }
+    );
+    return result.data;
+  } catch (error) {
+    return "Error accurd during fetch";
+  }
+};
+
+/* 
+export const getCommentsByPostId = async (
+  id: string
+): Promise<ApiResponse<PostComment[]> | ApiError> => {
+  try {
+    const data = await axios.get(
+      `https://jsonplaceholder.typicode.com/posts/${id}/comments`
+    );
+    return data;
+  } catch (error) {
+    return { message: "An error occurred during the API call.", status: 500 };
+  }
+};
+
+*/

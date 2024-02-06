@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
 import { User } from "../types";
-import { fetchAllUsers } from "../store/userSlice";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useAppDispatch, RootState } from "../store/store";
+import { RootState } from "../store/store";
 
 const HomePage = () => {
   const [users, setUsers] = useState<User[]>();
-  const dispatch = useAppDispatch();
   const user = useSelector((state: RootState) => state.user.users);
-
-  useEffect(() => {
-    dispatch(fetchAllUsers());
-  }, [dispatch]);
 
   useEffect(() => {
     if (user) setUsers(user);
@@ -39,11 +33,11 @@ export default HomePage;
 /* 
 
 - Fixa styling
-- Delete post
-- Update post 
+- Delete post - funkar 
+- Update post - funkar (men ej på de nytilllagda)
+-create post - funkar
 - Förbättra kodstruktur
-- Ta bort möjligheten att se andras bloggar? 
 - Se över komponenter, kanske de går att förbättra 
-- lägg till funktion för att kommentera 
+- Sökfunktion
 
 */

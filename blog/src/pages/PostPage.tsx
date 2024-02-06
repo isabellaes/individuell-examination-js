@@ -10,32 +10,7 @@ const PostPage = () => {
   const [comments, setComments] = useState<PostComment[]>();
   const params = useParams<{ Id: string }>();
   const [user, setUser] = useState<User>();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (params.Id) {
-          const comments = await getCommentsByPostId(params.Id);
-          if (typeof comments === "object" && Array.isArray(comments)) {
-            setComments(comments);
-            console.log(comments);
-          }
-          const post = await getPostByPostId(params.Id);
-          if (typeof post === "object") {
-            setPost(post);
-          }
-          if (postt) {
-            const user = await getUserById(postt?.userId);
-            if (typeof user === "object") {
-              setUser(user);
-            }
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
-    fetchData();
-  }, []);
+
   return (
     <div className="blogPage">
       <main>

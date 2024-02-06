@@ -3,14 +3,14 @@ import { Link, Outlet } from "react-router-dom";
 import { User } from "../types";
 import { useSelector } from "react-redux";
 import { useAppDispatch, RootState } from "../store/store";
-import { fetchUserById } from "../store/userSlice";
+import { logIn, logOut } from "../store/userSlice";
+import { setPostsByUser } from "../store/postSlice";
 
 const UserPage = () => {
-  const [user, setUser] = useState<User>();
-
+  const [user, setUser] = useState<User | null>();
   const dispatch = useAppDispatch();
   const currentUser = useSelector(
-    (state: RootState) => state.user.selectedUser
+    (state: RootState) => state.user.loggedInUser
   );
 
   useEffect(() => {
@@ -20,20 +20,28 @@ const UserPage = () => {
   }, [currentUser]);
 
   function handleInput(input: string) {
-    dispatch(fetchUserById(input));
+    dispatch(logIn(Number(input)));
+    dispatch(setPostsByUser(Number(input)));
   }
+
+  function LogOut() {
+    dispatch(logOut());
+    setUser(null);
+  }
+
   return (
     <>
       <div className="blogPage">
         <main>
           <h1>Your personal Blog!</h1>
-
-          <Outlet />
+          {user ? <Outlet /> : <></>}
         </main>
         <aside>
           {user ? (
             <>
               <h2>{user?.name}</h2>
+
+              <button onClick={LogOut}>Log out</button>
               <nav>
                 <ul>
                   <li>
@@ -41,9 +49,6 @@ const UserPage = () => {
                   </li>
                   <li>
                     <Link to={`posts/${user.id}`}>My Posts</Link>
-                  </li>
-                  <li>
-                    <Link to={`create/${user.id}`}>Create Post</Link>
                   </li>
                 </ul>
               </nav>
