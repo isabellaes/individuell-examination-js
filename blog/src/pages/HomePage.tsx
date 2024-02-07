@@ -29,14 +29,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-/* 
-
-
-- 
-- Fixa styling
-- Förbättra kodstruktur
-- Se över komponenter, kanske de går att förbättra 
-- Sökfunktion - funkar ej klar
-
-*/

@@ -8,7 +8,6 @@ interface Props {
 const EditPostForm = (props: Props) => {
   return (
     <div className="edit-component">
-      {" "}
       <form
         onSubmit={(e) => {
           e.preventDefault();

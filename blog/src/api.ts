@@ -1,6 +1,5 @@
-//api calls
 import axios, { AxiosResponse } from "axios";
-import { User, Post, PostComment, ApiResponse, ApiError } from "./types";
+import { User, Post, ApiError } from "./types";
 const url = "https://jsonplaceholder.typicode.com/";
 
 export const getAllUsers = async (): Promise<User[] | ApiError> => {
@@ -69,19 +68,3 @@ export const createPost = async (post: Post): Promise<Post | string> => {
     return "Error accurd during fetch";
   }
 };
-
-/* 
-export const getCommentsByPostId = async (
-  id: string
-): Promise<ApiResponse<PostComment[]> | ApiError> => {
-  try {
-    const data = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${id}/comments`
-    );
-    return data;
-  } catch (error) {
-    return { message: "An error occurred during the API call.", status: 500 };
-  }
-};
-
-*/

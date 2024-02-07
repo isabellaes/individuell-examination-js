@@ -13,15 +13,12 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const users = useSelector((state: RootState) => state.user.users);
   const posts = useSelector((state: RootState) => state.post.allPosts);
+
   function handleSearch() {
     if (searchWord) {
-      //sök på användare -> gå till blogPage med den usern
-
       const resultUsers = users.filter(
         (user) => user.name === searchWord || user.username === searchWord
       );
-
-      //sök på post (titel, innehåll) -> Ha en egen sida med sökresultat?
 
       const resultPosts = posts.filter(
         (post) => post.title === searchWord || post.body.includes(searchWord)

@@ -3,12 +3,11 @@ import { Post, User } from "../types";
 import { NavLink } from "react-router-dom";
 import BlogPost from "../components/BlogPost";
 import { useSelector } from "react-redux";
-import { useAppDispatch, RootState } from "../store/store";
+import { RootState } from "../store/store";
 
 const SearchResultsPage = () => {
   const [user, setUsers] = useState<User[]>();
   const [post, setPosts] = useState<Post[]>();
-  const dispatch = useAppDispatch();
   const users = useSelector((state: RootState) => state.search.users);
   const posts = useSelector((state: RootState) => state.search.posts);
 
@@ -25,12 +24,12 @@ const SearchResultsPage = () => {
         <h1>Searchresult</h1>
 
         <ul>
-          {users?.map((user) => (
+          {user?.map((user) => (
             <li key={user.id}>
               <NavLink to={`/blog/${user.id}`}>{user.name}</NavLink>
             </li>
           ))}
-          {posts?.map((post) => (
+          {post?.map((post) => (
             <li key={post.id}>
               <BlogPost post={post}></BlogPost>
             </li>

@@ -88,7 +88,6 @@ const postSlice = createSlice({
 
     builder.addCase(fetchCreatePost.fulfilled, (state, action) => {
       if (typeof action.payload === "object") {
-        console.log(action.payload);
         state.postsByUser.push(action.payload);
       }
     });

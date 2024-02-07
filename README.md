@@ -47,7 +47,8 @@ npm run dev
 - [x] Sass - variables, mixin, modules
 - [x] Api-calls with Axios
 - [x] Using interfaces
-- [] Generic interfaces
+- [ ] Generic interfaces
+- [ ] Searchfunction
 - [x] Fetch data from Api(crud)
 
 ### Extra

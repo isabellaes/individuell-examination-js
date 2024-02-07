@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlogPage from "../pages/BlogPage";
 import HomePage from "../pages/HomePage";
-import PostPage from "../pages/PostPage";
 import UserPage from "../pages/UserPage";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -32,7 +31,6 @@ const Navigation = () => {
           <Route path="posts/:Id" element={<Posts></Posts>}></Route>
         </Route>
         <Route path="blog/:Id" element={<BlogPage />} />
-        <Route path="post/:Id" element={<PostPage />} />
         <Route path="search" element={<SearchResultsPage />} />
       </Routes>
       <Footer />

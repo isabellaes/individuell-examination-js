@@ -7,7 +7,7 @@ const Profile = () => {
   const [user, setUser] = useState<User>();
 
   const currentUser = useSelector(
-    (state: RootState) => state.user.selectedUser
+    (state: RootState) => state.user.loggedInUser
   );
 
   useEffect(() => {
