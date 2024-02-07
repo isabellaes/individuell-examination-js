@@ -54,3 +54,5 @@ npm run dev
 ### Extra
 
 - [x] Vite React
+- [x] React Redux
+- [x] React Router
