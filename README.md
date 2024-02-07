@@ -45,10 +45,10 @@ npm run dev
 
 - [x] Typescript - modules
 - [x] Sass - variables, mixin, modules
-- [x] Api-calls with Axios
-- [x] Using interfaces
-- [ ] Generic interfaces
-- [ ] Searchfunction
+- [x] Axios for fetching data
+- [x] Using interfaces - Interfaces in own module
+- [x] Generic interfaces
+- [x] Searchfunction - Shows posts that includes searchword
 - [x] Fetch data from Api(crud)
 
 ### Extra

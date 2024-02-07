@@ -8,6 +8,7 @@ import { setPostsByUser } from "../store/postSlice";
 
 const UserPage = () => {
   const [user, setUser] = useState<User | null>();
+  const [userInput, setUserInput] = useState<string>();
   const dispatch = useAppDispatch();
   const currentUser = useSelector(
     (state: RootState) => state.user.loggedInUser
@@ -19,9 +20,11 @@ const UserPage = () => {
     }
   }, [currentUser]);
 
-  function handleInput(input: string) {
-    dispatch(logIn(Number(input)));
-    dispatch(setPostsByUser(Number(input)));
+  function handleLogin() {
+    if (userInput) {
+      dispatch(logIn(Number(userInput)));
+      dispatch(setPostsByUser(Number(userInput)));
+    }
   }
 
   function LogOut() {
@@ -56,12 +59,15 @@ const UserPage = () => {
           ) : (
             <>
               <div>
-                <label htmlFor="input-id"> Enter your id:</label>
+                {/* Simulate login with no security */}
+                <label htmlFor="input-id"> Enter user ID:</label>
                 <input
                   id="input-id"
                   type="text"
-                  onChange={(e) => handleInput(e.currentTarget.value)}
+                  placeholder="Number 1-10"
+                  onChange={(e) => setUserInput(e.currentTarget.value)}
                 ></input>
+                <button onClick={handleLogin}>Log in</button>
               </div>
             </>
           )}

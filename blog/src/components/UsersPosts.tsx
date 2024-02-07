@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import { Post } from "../types";
 import BlogPost from "./BlogPost";
 import { useSelector } from "react-redux";
-import { fetchUpdatePost, deletePost } from "../store/postSlice";
+import { fetchUpdatePost, fetchDeletePost } from "../store/postSlice";
 import { useAppDispatch, RootState } from "../store/store";
 import EditPostForm from "./EditPostForm";
 import CreatePost from "./CreatePost";
-import { deletePostById } from "../api";
 
 const Posts = () => {
   const [posts, setPosts] = useState<Post[]>();
@@ -19,17 +18,7 @@ const Posts = () => {
   }, [allPosts]);
 
   function handleDelete(id: number) {
-    const fetchData = async () => {
-      try {
-        const reuslt = await deletePostById(id.toString());
-        if (reuslt.status === 200) {
-          dispatch(deletePost(id));
-        }
-      } catch (error) {
-        throw new Error("Something went wrong");
-      }
-    };
-    fetchData();
+    dispatch(fetchDeletePost(id.toString()));
   }
 
   function handleUpdateTitle(title: string) {

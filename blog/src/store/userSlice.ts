@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getAllUsers } from "../api";
-import { ApiError, User } from "../types";
+import { ApiError, ApiResponse, User } from "../types";
 
 interface UserState {
   users: User[];
@@ -14,7 +14,7 @@ const initialState: UserState = {
 
 export const fetchAllUsers = createAsyncThunk(
   "fetchAllUsers",
-  async (): Promise<User[] | ApiError> => {
+  async (): Promise<ApiResponse<User[]> | ApiError> => {
     try {
       const response = await getAllUsers();
       return response;
@@ -41,8 +41,8 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllUsers.fulfilled, (state, action) => {
-      if (Array.isArray(action.payload)) {
-        const users: User[] = action.payload;
+      if (action.payload.status === 200 && "data" in action.payload) {
+        const users: User[] = action.payload.data;
         state.users = users;
       }
     });
