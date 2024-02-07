@@ -29,7 +29,7 @@ export const fetchUpdatePost = createAsyncThunk(
   async (post: Post): Promise<ApiResponse<Post> | ApiError> => {
     try {
       const response = await updatePost(post);
-      console.log(response);
+
       return response;
     } catch (error) {
       throw new Error("Something went wrong");

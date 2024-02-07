@@ -1,26 +1,15 @@
-import { useState, useEffect } from "react";
 import { User } from "../types";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
 
-const Profile = () => {
-  const [user, setUser] = useState<User>();
-
-  const currentUser = useSelector(
-    (state: RootState) => state.user.loggedInUser
-  );
-
-  useEffect(() => {
-    if (currentUser) {
-      setUser(currentUser);
-    }
-  }, [currentUser]);
+interface Props {
+  user: User;
+}
+const Profile = (props: Props) => {
   return (
     <>
-      <p>{user?.name}</p>
-      <p>{user?.username}</p>
-      <p>{user?.email}</p>
-      <p>{user?.id}</p>
+      <h1>{props.user.name}</h1>
+      <p>{props.user.username}</p>
+      <p>{props.user.email}</p>
+      <p>{props.user.id}</p>
     </>
   );
 };

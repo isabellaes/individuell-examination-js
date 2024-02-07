@@ -4,11 +4,11 @@ interface Props {
   post: Post;
 }
 
-const BlogPost = (post: Props) => {
+const BlogPost = (props: Props) => {
   return (
     <div className="blogPost">
-      <h1>{post.post.title}</h1>
-      <p>{post.post.body}</p>
+      <h1>{props.post.title}</h1>
+      <p>{props.post.body}</p>
     </div>
   );
 };

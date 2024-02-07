@@ -4,16 +4,18 @@ import HomePage from "../pages/HomePage";
 import UserPage from "../pages/UserPage";
 import Footer from "./Footer";
 import Header from "./Header";
-import Profile from "./Profile";
-import Posts from "./UsersPosts";
 import { useEffect } from "react";
-import { useAppDispatch } from "../store/store";
+import { RootState, useAppDispatch } from "../store/store";
 import { fetchAllUsers } from "../store/userSlice";
 import { fetchAllPosts } from "../store/postSlice";
 import SearchResultsPage from "../pages/SearchResultsPage";
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const dispatch = useAppDispatch();
+  const loggedInUser = useSelector(
+    (state: RootState) => state.user.loggedInUser
+  );
   useEffect(() => {
     dispatch(fetchAllUsers());
   }, [dispatch]);
@@ -23,16 +25,25 @@ const Navigation = () => {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route index element={<HomePage />} />
-        <Route path="user" element={<UserPage></UserPage>}>
-          <Route index element={<Posts></Posts>}></Route>
-          <Route path="profile/:Id" element={<Profile></Profile>}></Route>
-          <Route path="posts/:Id" element={<Posts></Posts>}></Route>
-        </Route>
-        <Route path="blog/:Id" element={<BlogPage />} />
-        <Route path="search" element={<SearchResultsPage />} />
-      </Routes>
+      {loggedInUser ? (
+        <>
+          <Routes>
+            <Route index element={<UserPage></UserPage>} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="blog/:Id" element={<BlogPage />} />
+            <Route path="search" element={<SearchResultsPage />} />
+          </Routes>
+        </>
+      ) : (
+        <>
+          <Routes>
+            <Route index element={<HomePage />} />
+            <Route path="blog/:Id" element={<BlogPage />} />
+            <Route path="search" element={<SearchResultsPage />} />
+          </Routes>
+        </>
+      )}
+
       <Footer />
     </BrowserRouter>
   );

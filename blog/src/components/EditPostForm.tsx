@@ -4,34 +4,41 @@ interface Props {
   handleUpdateTitle: (title: string) => void;
   handleUpdateBody: (body: string) => void;
   handleSubmit: () => void;
+  onClose: () => void;
 }
 const EditPostForm = (props: Props) => {
   return (
-    <div className="edit-component">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          props.handleSubmit();
-        }}
-      >
+    <div id="edit">
+      <div className="edit-component">
         <h1>Edit mode</h1>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={props.title}
-          onChange={(e) => props.handleUpdateTitle(e.currentTarget.value)}
-        />
-        <label htmlFor="body">Body:</label>
-        <input
-          type="text"
-          id="body"
-          value={props.body}
-          onChange={(e) => props.handleUpdateBody(e.currentTarget.value)}
-        />
-        <input type="submit" value={"save changes"}></input>
-      </form>
-      <a href="#">Close</a>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            props.handleSubmit();
+          }}
+        >
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            value={props.title}
+            onChange={(e) => props.handleUpdateTitle(e.currentTarget.value)}
+          />
+          <label htmlFor="body">Body:</label>
+          <textarea
+            rows={10}
+            id="body"
+            value={props.body}
+            onChange={(e) => props.handleUpdateBody(e.currentTarget.value)}
+          />
+          <input
+            className="button"
+            type="submit"
+            value={"Save changes"}
+          ></input>
+        </form>
+        <button onClick={props.onClose}>Close</button>
+      </div>
     </div>
   );
 };

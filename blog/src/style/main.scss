@@ -1,3 +1,5 @@
+@import "./variables/font";
+@import "./variables/colors";
 @import "./components/footer";
 @import "./components/header";
 @import "./pages/homePage";
@@ -13,12 +15,10 @@
   box-sizing: border-box;
 }
 
-p {
-  font-family: "Inter", sans-serif;
-}
-
-h1,
-h2,
-h3 {
-  font-family: "Josefin Slab", serif;
+button {
+  cursor: pointer;
+  padding: 7px;
+  background-color: $secondaryColor;
+  border: 1px solid $primaryColor;
+  border-radius: 4px;
 }
