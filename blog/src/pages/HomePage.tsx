@@ -32,12 +32,11 @@ export default HomePage;
 
 /* 
 
+
+- 
 - Fixa styling
-- Delete post - funkar 
-- Update post - funkar (men ej på de nytilllagda)
--create post - funkar
 - Förbättra kodstruktur
 - Se över komponenter, kanske de går att förbättra 
-- Sökfunktion
+- Sökfunktion - funkar ej klar
 
 */
