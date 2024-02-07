@@ -34,7 +34,7 @@ npm run dev
 - [x] Create new post
 - [x] Update post
 - [x] Delete post
-- [x] See your profile
+- [x] See your user info
 
 ### Not logged in
 
@@ -44,7 +44,7 @@ npm run dev
 ## Criterias for examination
 
 - [x] Typescript - modules
-- [x] Sass - variables, mixin, modules
+- [ ] Sass - variables, mixin, modules - Style not finished
 - [x] Axios for fetching data
 - [x] Using interfaces - Interfaces in own module
 - [x] Generic interfaces
