@@ -13,3 +13,13 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin button($color, $lineColor) {
+  button {
+    cursor: pointer;
+    padding: 7px;
+    background-color: $color;
+    border: 1px solid $lineColor;
+    border-radius: 4px;
+  }
+}

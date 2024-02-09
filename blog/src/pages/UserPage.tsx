@@ -69,46 +69,51 @@ const UserPage = () => {
     <>
       <div className="blogPage">
         <main>
-          <h1>Your personal Blog!</h1>
-          {editFormModalOpen && editPost ? (
-            <EditPostForm
-              title={editPost.title}
-              body={editPost.body}
-              handleUpdateTitle={handleUpdateTitle}
-              handleUpdateBody={handleUpdateBody}
-              handleSubmit={handleSubmit}
-              onClose={() => setEditFormModalOpen(false)}
-            />
-          ) : (
-            <></>
-          )}
-
-          {createFormModalOpen ? (
-            <CreatePost onClose={() => setCreateFormModalOpen(false)} />
-          ) : (
-            <></>
-          )}
-          <button onClick={() => setCreateFormModalOpen(true)}>
-            Create post
-          </button>
+          <div className="flex-row">
+            <h1>Your personal Blog!</h1>
+            <button onClick={() => setCreateFormModalOpen(true)}>
+              Create post
+            </button>
+          </div>
 
           {posts?.map((post) => (
             <div key={post.id}>
               <BlogPost post={post} />
-              <button
-                onClick={() => {
-                  setEditPost(post);
-                  setEditFormModalOpen(true);
-                }}
-              >
-                Edit post
-              </button>
-              <button onClick={() => handleDelete(post.id)}>Delete</button>
+              <div className="buttons">
+                <button
+                  onClick={() => {
+                    setEditPost(post);
+                    setEditFormModalOpen(true);
+                  }}
+                >
+                  Edit post
+                </button>
+                <button onClick={() => handleDelete(post.id)}>Delete</button>
+              </div>
             </div>
           ))}
         </main>
         <aside>{user ? <Profile user={user} /> : <></>}</aside>
       </div>
+
+      {editFormModalOpen && editPost ? (
+        <EditPostForm
+          title={editPost.title}
+          body={editPost.body}
+          handleUpdateTitle={handleUpdateTitle}
+          handleUpdateBody={handleUpdateBody}
+          handleSubmit={handleSubmit}
+          onClose={() => setEditFormModalOpen(false)}
+        />
+      ) : (
+        <></>
+      )}
+
+      {createFormModalOpen ? (
+        <CreatePost onClose={() => setCreateFormModalOpen(false)} />
+      ) : (
+        <></>
+      )}
     </>
   );
 };

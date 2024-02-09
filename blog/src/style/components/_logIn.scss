@@ -1,0 +1,41 @@
+.login-Modal {
+  background: #00000082;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.login-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $secondaryColor;
+  padding: 5em;
+  border-radius: 1em;
+
+  label {
+    margin-top: 1em;
+  }
+
+  input {
+    padding: 10px;
+    margin-bottom: 1em;
+    width: 15em;
+    border-radius: 3px;
+  }
+
+  .button {
+    margin-top: 1em;
+    border-radius: 5px;
+  }
+}

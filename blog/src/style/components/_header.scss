@@ -52,5 +52,11 @@ header {
     li {
       padding-left: 5px;
     }
+
+    nav {
+      li {
+        cursor: pointer;
+      }
+    }
   }
 }
