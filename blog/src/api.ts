@@ -50,9 +50,7 @@ export const updatePost = async (
 
     return { data: result.data, status: result.status };
   } catch (error) {
-    /*  Här kollar jag om id är större än 100, för att apiet har bara 100 poster. 
-    Apiet returnerar bara 200 för de poster som finns på servern och nyskapade sparas ej
-    Därav är detta en liten speciallösning för att man ska kunan redigera nyskapade poster också */
+    /* Check if post exist in server, new created posts get id > 100. Special fix to ensure new created post can be edited/deleted */
 
     if (post.id > 100) {
       return { data: post, status: 200 };

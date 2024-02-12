@@ -44,7 +44,7 @@ npm run dev
 ## Criterias for examination
 
 - [x] Typescript - modules
-- [ ] Sass - variables, mixin, modules - Style not finished
+- [x] Sass - variables, mixin, modules
 - [x] Axios for fetching data
 - [x] Using interfaces - Interfaces in own module
 - [x] Generic interfaces
@@ -56,12 +56,3 @@ npm run dev
 - [x] Vite React
 - [x] React Redux
 - [x] React Router
-
-<!-- Kvar att göra -->
-
-<!--
-- Styling - fixa close taggar till top - profile
-- Felhantering i api calls ( kolla om error är av typen axiosresponse )
-- Statusmeddelanden till användaren ( sucess | error ) -> Login/Logout, CRUD
-- Kommentera kod
- -->

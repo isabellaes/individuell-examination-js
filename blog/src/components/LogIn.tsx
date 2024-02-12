@@ -47,7 +47,7 @@ const LogIn = (props: Props) => {
           id="input-id"
           required
           type="text"
-          placeholder="Number 1-10"
+          placeholder="Number 1-10" /* Placeholder only for dev-mode */
           onChange={(e) => setUserInput(e.currentTarget.value)}
         ></input>
         <p>{inputError}</p>
