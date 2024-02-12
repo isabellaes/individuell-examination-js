@@ -13,7 +13,7 @@ const SearchResultsPage = () => {
   }, [posts]);
 
   return (
-    <div className="home-container">
+    <div className="layout">
       <main>
         <h1>Searchresult</h1>
 

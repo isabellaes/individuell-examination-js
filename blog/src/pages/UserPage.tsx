@@ -7,6 +7,9 @@ import BlogPost from "../components/BlogPost";
 import CreatePost from "../components/CreatePost";
 import EditPostForm from "../components/EditPostForm";
 import Profile from "../components/Profile";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import AddIcon from "@mui/icons-material/Add";
 
 const UserPage = () => {
   const [user, setUser] = useState<User | null>();
@@ -67,28 +70,31 @@ const UserPage = () => {
 
   return (
     <>
-      <div className="blogPage">
+      <div className="layout">
         <main>
           <div className="flex-row">
             <h1>Your personal Blog!</h1>
-            <button onClick={() => setCreateFormModalOpen(true)}>
-              Create post
-            </button>
+            <AddIcon
+              sx={{ cursor: "pointer", fontSize: "2em" }}
+              onClick={() => setCreateFormModalOpen(true)}
+            />
           </div>
 
           {posts?.map((post) => (
-            <div key={post.id}>
+            <div className="row" key={post.id}>
               <BlogPost post={post} />
               <div className="buttons">
-                <button
+                <EditIcon
+                  sx={{ cursor: "pointer" }}
                   onClick={() => {
                     setEditPost(post);
                     setEditFormModalOpen(true);
                   }}
-                >
-                  Edit post
-                </button>
-                <button onClick={() => handleDelete(post.id)}>Delete</button>
+                />
+                <DeleteOutlineIcon
+                  sx={{ cursor: "pointer", color: "red" }}
+                  onClick={() => handleDelete(post.id)}
+                />
               </div>
             </div>
           ))}

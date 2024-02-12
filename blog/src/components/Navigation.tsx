@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BlogPage from "../pages/BlogPage";
 import HomePage from "../pages/HomePage";
 import UserPage from "../pages/UserPage";
 import Footer from "./Footer";
@@ -30,7 +29,6 @@ const Navigation = () => {
           <Routes>
             <Route index element={<UserPage></UserPage>} />
             <Route path="/home" element={<HomePage />} />
-            <Route path="blog/:Id" element={<BlogPage />} />
             <Route path="search" element={<SearchResultsPage />} />
           </Routes>
         </>
@@ -38,7 +36,6 @@ const Navigation = () => {
         <>
           <Routes>
             <Route index element={<HomePage />} />
-            <Route path="blog/:Id" element={<BlogPage />} />
             <Route path="search" element={<SearchResultsPage />} />
           </Routes>
         </>

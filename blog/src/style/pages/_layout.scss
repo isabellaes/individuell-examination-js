@@ -1,17 +1,17 @@
-.blogPage {
+.layout {
   min-height: 100vh;
   max-width: 100vw;
   background-color: $secondaryColor;
-  display: flex;
-  flex-direction: row;
-  @include button(#ccc, #575757);
+  @include flex-row;
+  @include text-style;
 
-  .flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  ul {
+    @include flex-column;
+    list-style-type: none;
   }
-
+  li {
+    padding: 1em;
+  }
   aside {
     width: 20%;
     padding: 1em;
@@ -28,13 +28,17 @@
     margin-left: 5em;
     min-height: 100%;
 
-    .buttons {
-      button {
-        margin-left: 1em;
-      }
+    .flex-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
-  }
-  ul {
-    padding-left: 1em;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }

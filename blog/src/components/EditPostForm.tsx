@@ -1,3 +1,5 @@
+import CloseIcon from "@mui/icons-material/Close";
+
 interface Props {
   title: string;
   body: string;
@@ -37,7 +39,8 @@ const EditPostForm = (props: Props) => {
             value={"Save changes"}
           ></input>
         </form>
-        <button onClick={props.onClose}>Close</button>
+
+        <CloseIcon onClick={() => props.onClose()}></CloseIcon>
       </div>
     </div>
   );

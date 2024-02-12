@@ -3,4 +3,5 @@ footer {
   height: fit-content;
   background-color: #d9d3da;
   padding: 1em;
+  @include text-style;
 }

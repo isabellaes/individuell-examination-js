@@ -1,5 +1,3 @@
-@import "../functions/mixin";
-
 header {
   max-width: 100vw;
   height: fit-content;
@@ -8,18 +6,17 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0.5em;
+  @include text-style;
 
   .search-container {
-    display: flex;
     max-width: 300px;
-    border: 1px solid #ccc;
     border-radius: 30px;
     padding: 5px 15px 5px 15px;
     background-color: $baseColor;
     .search-field {
       border: none;
       outline: none;
-      color: #575757;
+      color: $textColorLight;
       background-color: $baseColor;
     }
 
@@ -31,32 +28,24 @@ header {
     }
 
     i {
-      color: #575757;
+      color: $textColorLight;
     }
   }
 
   .NavBar {
     height: fit-content;
     background-color: $primaryColor;
-    display: flex;
-    align-items: center;
+    @include center;
 
     padding: 5px;
     ul {
-      display: flex;
-      flex-direction: row;
+      @include flex-row;
       list-style-type: none;
       padding: 2px;
     }
 
     li {
       padding-left: 5px;
-    }
-
-    nav {
-      li {
-        cursor: pointer;
-      }
     }
   }
 }

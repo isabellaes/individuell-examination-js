@@ -55,8 +55,7 @@ const Header = () => {
             <nav>
               <ul>
                 <li>Info | </li>
-                <li onClick={() => navigation("/blog/4")}>Random Blog | </li>
-                <li onClick={() => navigation("/home")}>All blogs | </li>
+                <li onClick={() => navigation("/home")}>Home | </li>
                 <li onClick={() => navigation("/")}>My blog |</li>
                 <li onClick={() => handleLogOut()}>Log out</li>
               </ul>
@@ -68,8 +67,7 @@ const Header = () => {
             <nav>
               <ul>
                 <li>Info | </li>
-                <li onClick={() => navigation("/blog/4")}>Random Blog | </li>
-                <li onClick={() => navigation("/")}>All blogs | </li>
+                <li onClick={() => navigation("/")}>Home | </li>
                 <li onClick={() => setLogInModalOpen(true)}>Log in</li>
               </ul>
             </nav>

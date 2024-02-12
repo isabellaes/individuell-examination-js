@@ -7,9 +7,9 @@ const Profile = (props: Props) => {
   return (
     <>
       <h1>{props.user.name}</h1>
-      <p>{props.user.username}</p>
-      <p>{props.user.email}</p>
-      <p>{props.user.id}</p>
+      <p>Username: {props.user.username}</p>
+      <p>Email: {props.user.email}</p>
+      <p>Id: {props.user.id}</p>
     </>
   );
 };

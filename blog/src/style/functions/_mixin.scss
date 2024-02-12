@@ -5,7 +5,7 @@
 
 @mixin flex-column {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 @mixin center {
@@ -14,12 +14,16 @@
   justify-content: center;
 }
 
-@mixin button($color, $lineColor) {
-  button {
-    cursor: pointer;
-    padding: 7px;
-    background-color: $color;
-    border: 1px solid $lineColor;
-    border-radius: 4px;
+@mixin text-style {
+  h1,
+  h2,
+  h3 {
+    font-family: $fontHeading;
+    color: $textColor;
+  }
+
+  p {
+    font-family: $fontParagraph;
+    color: $textColor;
   }
 }

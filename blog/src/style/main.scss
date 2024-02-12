@@ -1,25 +1,16 @@
 @import "./variables/font";
 @import "./variables/colors";
+@import "./functions/mixin";
 @import "./components/footer";
 @import "./components/header";
-@import "./pages/homePage";
-@import "./functions/mixin";
-@import "./pages/blogPage";
 @import "./components/blogPost";
 @import "./components/createPost";
 @import "./components/editForm";
 @import "./components/logIn";
+@import "./pages/layout";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-button {
-  cursor: pointer;
-  padding: 7px;
-  background-color: $secondaryColor;
-  border: 1px solid $primaryColor;
-  border-radius: 4px;
 }

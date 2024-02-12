@@ -3,6 +3,7 @@ import { Post, User } from "../types";
 import { RootState, useAppDispatch } from "../store/store";
 import { fetchCreatePost } from "../store/postSlice";
 import { useSelector } from "react-redux";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface Props {
   onClose: () => void;
@@ -59,7 +60,7 @@ const CreatePost = (props: Props) => {
           />
           <input className="button" type="submit" value={"Create"}></input>
         </form>
-        <button onClick={() => props.onClose()}>Close</button>
+        <CloseIcon onClick={() => props.onClose()}></CloseIcon>
       </div>
     </div>
   );
