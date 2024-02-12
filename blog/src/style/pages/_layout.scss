@@ -39,3 +39,31 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .layout {
+    @include flex-column;
+
+    aside {
+      width: 100%;
+      margin: 0;
+    }
+
+    main {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .layout {
+    aside {
+      margin: 0;
+    }
+
+    main {
+      margin: 0;
+    }
+  }
+}

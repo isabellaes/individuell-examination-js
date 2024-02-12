@@ -1,0 +1,10 @@
+.profile {
+  @include flex-column;
+  @include text-style;
+  padding: 1em;
+  max-width: 100%;
+
+  p {
+    word-wrap: break-word;
+  }
+}

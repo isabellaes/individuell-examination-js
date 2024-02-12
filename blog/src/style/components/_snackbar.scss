@@ -20,15 +20,16 @@
 }
 
 #snackbar.sucess {
-  border-left: 6px solid #00cf4c;
-  background-color: #98ffbe;
+  border-left: 6px solid $sucessPrimary;
+  background-color: $sucessSecondary;
 }
 
 #snackbar.error {
-  border-left: 6px solid #e30000;
-  background-color: #ffb0b0;
+  border-left: 6px solid $errorPrimary;
+  background-color: $errorSecondary;
 }
 
+//Animation code from w3school
 @-webkit-keyframes fadein {
   from {
     bottom: 0;

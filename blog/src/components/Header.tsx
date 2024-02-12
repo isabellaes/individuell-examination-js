@@ -6,10 +6,13 @@ import { useState, useEffect } from "react";
 import { logOut } from "../store/userSlice";
 import { User } from "../types";
 import LogIn from "./LogIn";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Header = () => {
   const [user, setUser] = useState<User | null>();
   const [logInModalOpen, setLogInModalOpen] = useState<boolean>(false);
+  const [menu, showMenu] = useState<boolean>(false);
 
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
@@ -47,6 +50,14 @@ const Header = () => {
     }
   }
 
+  function handleShowMenu() {
+    if (menu === false) {
+      showMenu(true);
+    } else if (menu === true) {
+      showMenu(false);
+    }
+  }
+
   return (
     <header>
       <div className="NavBar">
@@ -55,7 +66,6 @@ const Header = () => {
             <h1 onClick={() => navigation("/")}>BLOG.DEV</h1>
             <nav>
               <ul>
-                <li>Info | </li>
                 <li onClick={() => navigation("/home")}>Home | </li>
                 <li onClick={() => navigation("/")}>My blog |</li>
                 <li onClick={() => handleLogOut()}>Log out</li>
@@ -67,7 +77,6 @@ const Header = () => {
             <h1 onClick={() => navigation("/")}>BLOG.DEV</h1>
             <nav>
               <ul>
-                <li>Info | </li>
                 <li onClick={() => navigation("/")}>Home | </li>
                 <li onClick={() => setLogInModalOpen(true)}>Log in</li>
               </ul>
@@ -80,14 +89,55 @@ const Header = () => {
           </>
         )}
       </div>
-      <div className="search-container">
-        <input
-          type="text"
-          className="search-field"
-          placeholder="Search..."
-          onChange={(e) => handleSearch(e.currentTarget.value)}
-        />
-        <i className="bx bx-search"></i>
+      <div>
+        <div className="mobile">
+          <h1 onClick={() => navigation("/")}>BLOG.DEV</h1>
+        </div>
+        <div className="search-container">
+          <input
+            type="text"
+            className="search-field"
+            placeholder="Search..."
+            onChange={(e) => handleSearch(e.currentTarget.value)}
+          />
+          <i className="bx bx-search"></i>
+        </div>
+      </div>
+
+      {/* Drop down menu for mobile and small devices */}
+      <div className="mobile-nav">
+        <MenuIcon sx={{ fontSize: "2em" }} onClick={handleShowMenu}></MenuIcon>
+
+        {menu ? (
+          <div className="drop-down-menu">
+            {user ? (
+              <>
+                <ul>
+                  <CloseIcon onClick={() => handleShowMenu()}></CloseIcon>
+                  <li onClick={() => navigation("/home")}>Home </li>
+                  <li onClick={() => navigation("/")}>My blog</li>
+                  <li onClick={() => handleLogOut()}>Log out</li>
+                </ul>
+              </>
+            ) : (
+              <>
+                <ul>
+                  <CloseIcon onClick={() => handleShowMenu()}></CloseIcon>
+                  <li onClick={() => navigation("/")}>Home </li>
+                  <li onClick={() => setLogInModalOpen(true)}>Log in</li>
+                </ul>
+
+                {logInModalOpen ? (
+                  <LogIn onClose={() => setLogInModalOpen(false)} />
+                ) : (
+                  <></>
+                )}
+              </>
+            )}
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </header>
   );
