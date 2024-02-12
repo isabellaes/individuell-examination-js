@@ -5,11 +5,15 @@ import { ApiError, ApiResponse, Post } from "../types";
 interface PostState {
   allPosts: Post[];
   postsByUser: Post[];
+  statusMessage: string;
+  sucess: boolean | null;
 }
 
 const initialState: PostState = {
   allPosts: [],
   postsByUser: [],
+  sucess: null,
+  statusMessage: "",
 };
 
 export const fetchAllPosts = createAsyncThunk(
@@ -89,13 +93,26 @@ const postSlice = createSlice({
         state.postsByUser = state.postsByUser.map((post) =>
           post.id === updatedPost.id ? updatedPost : post
         );
+        state.statusMessage = "Post updated sucessfully";
+        state.sucess = true;
       }
+    });
+    builder.addCase(fetchUpdatePost.rejected, (state) => {
+      state.statusMessage = "Something went wrong";
+      state.sucess = false;
     });
 
     builder.addCase(fetchCreatePost.fulfilled, (state, action) => {
       if (action.payload.status === 201 && "data" in action.payload) {
         state.postsByUser.push(action.payload.data);
+        state.statusMessage = "Post created sucessfully";
+        state.sucess = true;
       }
+    });
+
+    builder.addCase(fetchCreatePost.rejected, (state) => {
+      state.statusMessage = "Something went wrong";
+      state.sucess = false;
     });
 
     builder.addCase(fetchDeletePost.fulfilled, (state, action) => {
@@ -106,8 +123,16 @@ const postSlice = createSlice({
           state.postsByUser = state.postsByUser?.filter(
             (p) => p.id !== post.id
           );
+
+          state.statusMessage = "Post deleted sucessfully";
+          state.sucess = true;
         }
       }
+    });
+
+    builder.addCase(fetchDeletePost.rejected, (state) => {
+      state.statusMessage = "Something went wrong";
+      state.sucess = false;
     });
   },
 });

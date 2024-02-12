@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { Post, User } from "../types";
 import { useSelector } from "react-redux";
 import { useAppDispatch, RootState } from "../store/store";
-import { fetchDeletePost, fetchUpdatePost } from "../store/postSlice";
+import {
+  fetchCreatePost,
+  fetchDeletePost,
+  fetchUpdatePost,
+} from "../store/postSlice";
 import BlogPost from "../components/BlogPost";
 import CreatePost from "../components/CreatePost";
 import EditPostForm from "../components/EditPostForm";
@@ -16,19 +20,43 @@ const UserPage = () => {
   const [createFormModalOpen, setCreateFormModalOpen] =
     useState<boolean>(false);
   const [editFormModalOpen, setEditFormModalOpen] = useState<boolean>(false);
-  const allPosts = useSelector((state: RootState) => state.post.postsByUser);
   const [editPost, setEditPost] = useState<Post>();
+  const [posts, setPosts] = useState<Post[]>();
+  const [statusMessage, setStatusMessage] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [body, setBody] = useState<string>("");
+  const [actionStatus, setActionStatus] = useState<boolean | null>();
+
   const dispatch = useAppDispatch();
   const loggedInUser = useSelector(
     (state: RootState) => state.user.loggedInUser
   );
-  const [posts, setPosts] = useState<Post[]>();
+  const statusmessage = useSelector(
+    (state: RootState) => state.post.statusMessage
+  );
+  const status = useSelector((state: RootState) => state.post.sucess);
+
+  const allPosts = useSelector((state: RootState) => state.post.postsByUser);
+
+  useEffect(() => {
+    if (statusmessage) setStatusMessage(statusmessage);
+  }, [statusmessage]);
+
+  useEffect(() => {
+    if (status) {
+      setActionStatus(status);
+    }
+  }, [status]);
+
   useEffect(() => {
     if (allPosts) setPosts(allPosts);
   }, [allPosts]);
 
   function handleDelete(id: number) {
     dispatch(fetchDeletePost(id.toString()));
+    setTimeout(function () {
+      toggleSnackbar();
+    }, 500);
   }
 
   function handleUpdateTitle(title: string) {
@@ -59,7 +87,46 @@ const UserPage = () => {
     if (editPost) {
       dispatch(fetchUpdatePost(editPost));
       setEditFormModalOpen(false);
+      setTimeout(function () {
+        toggleSnackbar();
+      }, 500);
     }
+  }
+
+  function handleSubmitCreateForm() {
+    if (body && title && user) {
+      const newPost: Post = {
+        id: Date.now(),
+        body: body,
+        title: title,
+        userId: user.id,
+      };
+
+      dispatch(fetchCreatePost(newPost));
+      setCreateFormModalOpen(false);
+      setTimeout(function () {
+        toggleSnackbar();
+      }, 500);
+    }
+  }
+
+  function toggleSnackbar() {
+    var x = document.getElementById("snackbar") as HTMLElement;
+    if (actionStatus) {
+      x.classList.toggle("sucess");
+    } else {
+      x.classList.toggle("error");
+    }
+    x.classList.toggle("show");
+    setTimeout(function () {
+      x.classList.toggle("show");
+      if (x.classList.contains("sucess")) {
+        x.classList.toggle("sucess");
+      }
+      if (x.classList.contains("error")) {
+        x.classList.toggle("error");
+      }
+    }, 3000);
   }
 
   useEffect(() => {
@@ -101,6 +168,7 @@ const UserPage = () => {
         </main>
         <aside>{user ? <Profile user={user} /> : <></>}</aside>
       </div>
+      <div id="snackbar">{statusMessage}</div>
 
       {editFormModalOpen && editPost ? (
         <EditPostForm
@@ -116,7 +184,12 @@ const UserPage = () => {
       )}
 
       {createFormModalOpen ? (
-        <CreatePost onClose={() => setCreateFormModalOpen(false)} />
+        <CreatePost
+          setBody={setBody}
+          setTitle={setTitle}
+          handleSubmitCreateForm={handleSubmitCreateForm}
+          onClose={() => setCreateFormModalOpen(false)}
+        />
       ) : (
         <></>
       )}
