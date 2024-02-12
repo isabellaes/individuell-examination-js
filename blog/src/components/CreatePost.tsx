@@ -39,6 +39,7 @@ const CreatePost = (props: Props) => {
   return (
     <div id="create">
       <div className="create-component">
+        <CloseIcon onClick={() => props.onClose()}></CloseIcon>
         <h1>Create Post</h1>
         <form
           onSubmit={(e) => {
@@ -60,7 +61,6 @@ const CreatePost = (props: Props) => {
           />
           <input className="button" type="submit" value={"Create"}></input>
         </form>
-        <CloseIcon onClick={() => props.onClose()}></CloseIcon>
       </div>
     </div>
   );

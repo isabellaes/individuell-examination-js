@@ -12,6 +12,7 @@ const EditPostForm = (props: Props) => {
   return (
     <div id="edit">
       <div className="edit-component">
+        <CloseIcon onClick={() => props.onClose()}></CloseIcon>
         <h1>Edit mode</h1>
         <form
           onSubmit={(e) => {
@@ -39,8 +40,6 @@ const EditPostForm = (props: Props) => {
             value={"Save changes"}
           ></input>
         </form>
-
-        <CloseIcon onClick={() => props.onClose()}></CloseIcon>
       </div>
     </div>
   );

@@ -5,11 +5,13 @@ import { ApiError, ApiResponse, User } from "../types";
 interface UserState {
   users: User[];
   loggedInUser: User | null;
+  errorMessage: string;
 }
 
 const initialState: UserState = {
   users: [],
   loggedInUser: null,
+  errorMessage: "",
 };
 
 export const fetchAllUsers = createAsyncThunk(
@@ -33,6 +35,9 @@ const userSlice = createSlice({
 
       if (user) {
         state.loggedInUser = user;
+        state.errorMessage = "";
+      } else {
+        state.errorMessage = "No user found.";
       }
     },
     logOut: (state) => {

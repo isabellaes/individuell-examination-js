@@ -60,14 +60,8 @@ npm run dev
 <!-- Kvar att göra -->
 
 <!--
-
-- Styling
-- Strukturera upp sass
+- Styling - fixa close taggar till top - profile
 - Felhantering i api calls ( kolla om error är av typen axiosresponse )
 - Statusmeddelanden till användaren ( sucess | error ) -> Login/Logout, CRUD
-- Se över components/pages kodstruktur
 - Kommentera kod
--
-
-
  -->
