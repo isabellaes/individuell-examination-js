@@ -7,14 +7,6 @@ interface Post {
   userId: number;
 }
 
-interface PostComment {
-  postId: number;
-  id: number;
-  name: string;
-  email: string;
-  body: string;
-}
-
 interface User {
   id: number;
   name: string;
@@ -32,4 +24,4 @@ interface ApiError {
   status: number;
 }
 
-export type { Post, PostComment, User, ApiResponse, ApiError };
+export type { Post, User, ApiResponse, ApiError };

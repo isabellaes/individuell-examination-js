@@ -2,7 +2,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 interface Props {
   onClose: () => void;
-  handleSubmitCreateForm: () => void;
+  handleSubmit: () => void;
   setTitle: (title: string) => void;
   setBody: (body: string) => void;
 }
@@ -15,7 +15,7 @@ const CreatePost = (props: Props) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            props.handleSubmitCreateForm();
+            props.handleSubmit();
           }}
         >
           <label htmlFor="title">Title:</label>

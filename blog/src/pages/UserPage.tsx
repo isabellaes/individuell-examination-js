@@ -52,6 +52,12 @@ const UserPage = () => {
     if (allPosts) setPosts(allPosts);
   }, [allPosts]);
 
+  useEffect(() => {
+    if (loggedInUser) {
+      setUser(loggedInUser);
+    }
+  }, [loggedInUser]);
+
   function handleDelete(id: number) {
     dispatch(fetchDeletePost(id.toString()));
     setTimeout(function () {
@@ -83,7 +89,7 @@ const UserPage = () => {
       setEditPost(updatedPost);
     }
   }
-  function handleSubmit() {
+  function handleSubmitEditForm() {
     if (editPost) {
       dispatch(fetchUpdatePost(editPost));
       setEditFormModalOpen(false);
@@ -119,6 +125,7 @@ const UserPage = () => {
     }
     x.classList.toggle("show");
     setTimeout(function () {
+      //clear and hide snackbar
       x.classList.toggle("show");
       if (x.classList.contains("sucess")) {
         x.classList.toggle("sucess");
@@ -129,17 +136,11 @@ const UserPage = () => {
     }, 3000);
   }
 
-  useEffect(() => {
-    if (loggedInUser) {
-      setUser(loggedInUser);
-    }
-  }, [loggedInUser]);
-
   return (
     <>
       <div className="layout">
         <main>
-          <div className="flex-row">
+          <div className="row-spacebetween">
             <h1>Your personal Blog!</h1>
             <AddIcon
               sx={{ cursor: "pointer", fontSize: "2em" }}
@@ -148,21 +149,20 @@ const UserPage = () => {
           </div>
 
           {posts?.map((post) => (
-            <div className="row" key={post.id}>
+            <div className="row-center" key={post.id}>
               <BlogPost post={post} />
-              <div className="buttons">
-                <EditIcon
-                  sx={{ cursor: "pointer" }}
-                  onClick={() => {
-                    setEditPost(post);
-                    setEditFormModalOpen(true);
-                  }}
-                />
-                <DeleteOutlineIcon
-                  sx={{ cursor: "pointer", color: "red" }}
-                  onClick={() => handleDelete(post.id)}
-                />
-              </div>
+
+              <EditIcon
+                sx={{ cursor: "pointer" }}
+                onClick={() => {
+                  setEditPost(post);
+                  setEditFormModalOpen(true);
+                }}
+              />
+              <DeleteOutlineIcon
+                sx={{ cursor: "pointer", color: "red" }}
+                onClick={() => handleDelete(post.id)}
+              />
             </div>
           ))}
         </main>
@@ -176,7 +176,7 @@ const UserPage = () => {
           body={editPost.body}
           handleUpdateTitle={handleUpdateTitle}
           handleUpdateBody={handleUpdateBody}
-          handleSubmit={handleSubmit}
+          handleSubmit={handleSubmitEditForm}
           onClose={() => setEditFormModalOpen(false)}
         />
       ) : (
@@ -187,7 +187,7 @@ const UserPage = () => {
         <CreatePost
           setBody={setBody}
           setTitle={setTitle}
-          handleSubmitCreateForm={handleSubmitCreateForm}
+          handleSubmit={handleSubmitCreateForm}
           onClose={() => setCreateFormModalOpen(false)}
         />
       ) : (

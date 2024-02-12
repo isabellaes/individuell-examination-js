@@ -27,11 +27,16 @@ const HomePage = () => {
     <div className="layout">
       <main>
         <h1>Posts by user {user?.name}</h1>
-        {posts?.map((post) => (
-          <div className="row" key={post.id}>
-            <BlogPost post={post} />
-          </div>
-        ))}
+
+        {posts ? (
+          posts.map((post) => (
+            <div className="row" key={post.id}>
+              <BlogPost post={post} />
+            </div>
+          ))
+        ) : (
+          <p>Select a user to see posts.</p>
+        )}
       </main>
       <aside>
         <ul>

@@ -9,10 +9,11 @@ import LogIn from "./LogIn";
 
 const Header = () => {
   const [user, setUser] = useState<User | null>();
-
   const [logInModalOpen, setLogInModalOpen] = useState<boolean>(false);
+
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
+
   const posts = useSelector((state: RootState) => state.post.allPosts);
   const currentUser = useSelector(
     (state: RootState) => state.user.loggedInUser

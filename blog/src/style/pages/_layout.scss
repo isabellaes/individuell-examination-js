@@ -28,17 +28,14 @@
     margin-left: 5em;
     min-height: 100%;
 
-    .flex-row {
-      display: flex;
-      flex-direction: row;
+    .row-spacebetween {
+      @include flex-row;
       justify-content: space-between;
     }
 
-    .row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
+    .row-center {
+      @include flex-row;
+      @include center;
     }
   }
 }
