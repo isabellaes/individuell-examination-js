@@ -38,6 +38,10 @@
       @include center;
     }
   }
+
+  .mobile {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -52,6 +56,23 @@
     main {
       width: 100%;
       margin: 0;
+    }
+
+    .mobile {
+      display: block;
+    }
+
+    .row-wrap ul {
+      @include flex-row;
+      flex-wrap: wrap;
+
+      li {
+        padding: 5px;
+      }
+    }
+
+    .desktop {
+      display: none;
     }
   }
 }

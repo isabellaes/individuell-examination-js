@@ -111,34 +111,63 @@ const Header = () => {
         {menu ? (
           <div className="drop-down-menu">
             {user ? (
-              <>
-                <ul>
-                  <CloseIcon onClick={() => handleShowMenu()}></CloseIcon>
-                  <li onClick={() => navigation("/home")}>Home </li>
-                  <li onClick={() => navigation("/")}>My blog</li>
-                  <li onClick={() => handleLogOut()}>Log out</li>
-                </ul>
-              </>
+              <ul>
+                <li
+                  onClick={() => {
+                    navigation("/home");
+                    handleShowMenu();
+                  }}
+                >
+                  Home
+                </li>
+                <li
+                  onClick={() => {
+                    navigation("/");
+                    handleShowMenu();
+                  }}
+                >
+                  My blog
+                </li>
+                <li
+                  onClick={() => {
+                    handleLogOut();
+                    handleShowMenu();
+                  }}
+                >
+                  Log out
+                </li>
+              </ul>
             ) : (
-              <>
-                <ul>
-                  <CloseIcon onClick={() => handleShowMenu()}></CloseIcon>
-                  <li onClick={() => navigation("/")}>Home </li>
-                  <li onClick={() => setLogInModalOpen(true)}>Log in</li>
-                </ul>
-
-                {logInModalOpen ? (
-                  <LogIn onClose={() => setLogInModalOpen(false)} />
-                ) : (
-                  <></>
-                )}
-              </>
+              <ul>
+                <CloseIcon onClick={() => handleShowMenu()}></CloseIcon>
+                <li
+                  onClick={() => {
+                    navigation("/");
+                    handleShowMenu();
+                  }}
+                >
+                  Home{" "}
+                </li>
+                <li
+                  onClick={() => {
+                    setLogInModalOpen(true);
+                    handleShowMenu();
+                  }}
+                >
+                  Log in
+                </li>
+              </ul>
             )}
           </div>
         ) : (
           <></>
         )}
       </div>
+      {logInModalOpen ? (
+        <LogIn onClose={() => setLogInModalOpen(false)} />
+      ) : (
+        <></>
+      )}
     </header>
   );
 };

@@ -27,6 +27,15 @@ const HomePage = () => {
     <div className="layout">
       <main>
         <h1>Posts by user {user?.name}</h1>
+        <div className="mobile row-wrap">
+          <ul>
+            {users?.map((user) => (
+              <li key={user.id} onClick={() => handleSelectUser(user)}>
+                {user.name} |
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {posts ? (
           posts.map((post) => (
@@ -38,7 +47,7 @@ const HomePage = () => {
           <p>Select a user to see posts.</p>
         )}
       </main>
-      <aside>
+      <aside className="desktop">
         <ul>
           {users?.map((user) => (
             <li key={user.id} onClick={() => handleSelectUser(user)}>

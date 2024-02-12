@@ -46,6 +46,8 @@ header {
 
     li {
       padding-left: 5px;
+      font-family: $fontParagraph;
+      cursor: pointer;
     }
   }
 
@@ -72,9 +74,11 @@ header {
     .drop-down-menu {
       display: block;
       position: absolute;
-      background-color: #fdfdfd;
-      min-width: 100px;
-      right: 0;
+      background-color: $primaryColor;
+      min-width: 150px;
+      min-height: 10em;
+      right: -10px;
+      margin-top: 20px;
       padding: 1em;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
@@ -87,6 +91,8 @@ header {
 
       li {
         padding: 5px;
+        font-family: $fontParagraph;
+        cursor: pointer;
       }
     }
 

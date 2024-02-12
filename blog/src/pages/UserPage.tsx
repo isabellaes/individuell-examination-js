@@ -148,6 +148,10 @@ const UserPage = () => {
             />
           </div>
 
+          <aside className="mobile">
+            {user ? <Profile user={user} /> : <></>}
+          </aside>
+
           {posts?.map((post) => (
             <div className="row-center" key={post.id}>
               <BlogPost post={post} />
@@ -166,7 +170,9 @@ const UserPage = () => {
             </div>
           ))}
         </main>
-        <aside>{user ? <Profile user={user} /> : <></>}</aside>
+        <aside className="desktop">
+          {user ? <Profile user={user} /> : <></>}
+        </aside>
       </div>
       <div id="snackbar">{statusMessage}</div>
 
