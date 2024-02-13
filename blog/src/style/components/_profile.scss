@@ -4,7 +4,12 @@
   padding: 1em;
   max-width: 100%;
 
+  h1 {
+    margin-bottom: 1em;
+  }
+
   p {
     word-wrap: break-word;
+    margin-bottom: 5px;
   }
 }

@@ -12,6 +12,7 @@
 
   label {
     margin-top: 1em;
+    font-family: $fontParagraph;
   }
 
   input,
@@ -20,11 +21,13 @@
     margin-bottom: 1em;
     width: 15em;
     border-radius: 3px;
+    font-family: $fontParagraph;
   }
 
   .button {
     margin-top: 1em;
     border-radius: 5px;
+    font-family: $fontParagraph;
   }
 }
 

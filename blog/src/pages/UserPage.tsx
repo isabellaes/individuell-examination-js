@@ -51,7 +51,13 @@ const UserPage = () => {
   }, [loggedInUser]);
 
   function handleDelete(id: number) {
-    dispatch(fetchDeletePost(id.toString()));
+    if (
+      window.confirm(
+        "This action is irreversibel! Are you sure you want to delete this post?"
+      )
+    ) {
+      dispatch(fetchDeletePost(id.toString()));
+    }
   }
 
   function handleUpdateTitle(title: string) {

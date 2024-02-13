@@ -31,7 +31,7 @@ export const deletePostById = async (
     const result = await axios.delete<ApiResponse<string>>(
       `${url}/posts/${id}`
     );
-    return { data: id, status: result.status };
+    return { data: id, status: result.status }; //Return postId for delete actions in store
   } catch (error) {
     return { message: "An error occurred during the API call.", status: 500 };
   }

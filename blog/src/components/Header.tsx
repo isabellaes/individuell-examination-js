@@ -139,7 +139,6 @@ const Header = () => {
               </ul>
             ) : (
               <ul>
-                <CloseIcon onClick={() => handleShowMenu()}></CloseIcon>
                 <li
                   onClick={() => {
                     navigation("/");
