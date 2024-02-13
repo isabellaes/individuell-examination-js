@@ -106,7 +106,10 @@ const Header = () => {
 
       {/* Drop down menu for mobile and small devices */}
       <div className="mobile-nav">
-        <MenuIcon sx={{ fontSize: "2em" }} onClick={handleShowMenu}></MenuIcon>
+        <MenuIcon
+          sx={{ fontSize: "2em", cursor: "pointer" }}
+          onClick={handleShowMenu}
+        ></MenuIcon>
 
         {menu ? (
           <div className="drop-down-menu">
