@@ -15,31 +15,38 @@
 
 .login-component {
   @include flex-column;
-  align-items: center;
+  align-items: end;
   background-color: $secondaryColor;
   padding: 2em;
   border-radius: 1em;
-  @include text-style;
 
-  label {
-    margin-top: 1em;
-    font-family: $fontParagraph;
-  }
+  .login-form {
+    @include flex-column;
+    align-items: center;
+    padding-top: 1em;
+    border-radius: 1em;
+    @include text-style;
 
-  input {
-    padding: 10px;
-    margin-bottom: 1em;
-    width: 15em;
-    border-radius: 3px;
-    font-family: $fontParagraph;
-  }
+    label {
+      margin-top: 1em;
+      font-family: $fontParagraph;
+    }
 
-  button {
-    cursor: pointer;
-    padding: 10px;
-    margin-bottom: 1em;
-    width: 15em;
-    border-radius: 3px;
-    font-family: $fontParagraph;
+    input {
+      padding: 10px;
+      margin-bottom: 1em;
+      width: 15em;
+      border-radius: 3px;
+      font-family: $fontParagraph;
+    }
+
+    button {
+      cursor: pointer;
+      padding: 10px;
+      margin-bottom: 1em;
+      width: 15em;
+      border-radius: 3px;
+      font-family: $fontParagraph;
+    }
   }
 }

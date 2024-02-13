@@ -15,33 +15,38 @@
 
 .create-component {
   @include flex-column;
-  align-items: center;
   background-color: $secondaryColor;
   padding: 2em;
   border-radius: 1em;
   @include text-style;
+  align-items: end;
 
-  form {
+  .create-form {
     @include flex-column;
-  }
-
-  label {
     margin-top: 1em;
-    font-family: $fontParagraph;
-  }
+    align-items: center;
+    form {
+      @include flex-column;
+    }
 
-  input,
-  textarea {
-    padding: 10px;
-    margin-bottom: 1em;
-    width: 15em;
-    border-radius: 3px;
-    font-family: $fontParagraph;
-  }
+    label {
+      margin-top: 1em;
+      font-family: $fontParagraph;
+    }
 
-  .button {
-    margin-top: 1em;
-    border-radius: 5px;
-    font-family: $fontParagraph;
+    input,
+    textarea {
+      padding: 10px;
+      margin-bottom: 1em;
+      width: 15em;
+      border-radius: 3px;
+      font-family: $fontParagraph;
+    }
+
+    .button {
+      margin-top: 1em;
+      border-radius: 5px;
+      font-family: $fontParagraph;
+    }
   }
 }

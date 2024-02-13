@@ -10,9 +10,4 @@
 @import "./pages/layout";
 @import "./components/snackbar";
 @import "./components/profile";
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "./base";

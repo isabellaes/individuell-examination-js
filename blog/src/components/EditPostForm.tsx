@@ -13,33 +13,35 @@ const EditPostForm = (props: Props) => {
     <div id="edit">
       <div className="edit-component">
         <CloseIcon onClick={() => props.onClose()}></CloseIcon>
-        <h1>Edit mode</h1>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            props.handleSubmit();
-          }}
-        >
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            value={props.title}
-            onChange={(e) => props.handleUpdateTitle(e.currentTarget.value)}
-          />
-          <label htmlFor="body">Body:</label>
-          <textarea
-            rows={10}
-            id="body"
-            value={props.body}
-            onChange={(e) => props.handleUpdateBody(e.currentTarget.value)}
-          />
-          <input
-            className="button"
-            type="submit"
-            value={"Save changes"}
-          ></input>
-        </form>
+        <div className="edit-form">
+          <h1>Edit mode</h1>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              props.handleSubmit();
+            }}
+          >
+            <label htmlFor="title">Title:</label>
+            <input
+              type="text"
+              id="title"
+              value={props.title}
+              onChange={(e) => props.handleUpdateTitle(e.currentTarget.value)}
+            />
+            <label htmlFor="body">Body:</label>
+            <textarea
+              rows={10}
+              id="body"
+              value={props.body}
+              onChange={(e) => props.handleUpdateBody(e.currentTarget.value)}
+            />
+            <input
+              className="button"
+              type="submit"
+              value={"Save changes"}
+            ></input>
+          </form>
+        </div>
       </div>
     </div>
   );

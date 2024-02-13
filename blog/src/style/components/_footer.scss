@@ -2,6 +2,10 @@ footer {
   max-width: 100vw;
   height: fit-content;
   background-color: #d9d3da;
-  padding: 2em;
+  padding: 1em;
   @include text-style;
+
+  h1 {
+    margin-bottom: 0.5em;
+  }
 }

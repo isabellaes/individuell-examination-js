@@ -102,7 +102,13 @@ const postSlice = createSlice({
 
     builder.addCase(fetchCreatePost.fulfilled, (state, action) => {
       if (action.payload.status === 201 && "data" in action.payload) {
-        state.postsByUser.push(action.payload.data);
+        const post: Post = {
+          id: Date.now(), //ensure created post gets unique id, api returns same Id for all created posts
+          body: action.payload.data.body,
+          title: action.payload.data.title,
+          userId: action.payload.data.userId,
+        };
+        state.postsByUser.push(post);
         state.statusMessage = "Post created sucessfully";
         toggleSnackbar(true);
       }

@@ -41,18 +41,20 @@ const LogIn = (props: Props) => {
     <div className="login-Modal">
       <div className="login-component">
         <CloseIcon onClick={() => props.onClose()}></CloseIcon>
-        <h1>Log in</h1>
-        <label htmlFor="input-id"> Enter user ID:</label>
-        <input
-          id="input-id"
-          required
-          type="text"
-          placeholder="Number 1-10" /* Placeholder only for dev-mode */
-          onChange={(e) => setUserInput(e.currentTarget.value)}
-        ></input>
-        <p>{inputError}</p>
-        <p>{logInError}</p>
-        <button onClick={() => handleLogIn()}>Log in</button>
+        <div className="login-form">
+          <h1>Log in</h1>
+          <label htmlFor="input-id"> Enter user ID:</label>
+          <input
+            id="input-id"
+            required
+            type="text"
+            placeholder="Number 1-10" /* Placeholder only for dev-mode */
+            onChange={(e) => setUserInput(e.currentTarget.value)}
+          ></input>
+          <p>{inputError}</p>
+          <p>{logInError}</p>
+          <button onClick={() => handleLogIn()}>Log in</button>
+        </div>
       </div>
     </div>
   );

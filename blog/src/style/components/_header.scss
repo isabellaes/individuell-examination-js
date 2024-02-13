@@ -85,12 +85,13 @@ header {
 
       ul {
         @include flex-column;
+        align-items: center;
         list-style-type: none;
         padding: 1em;
       }
 
       li {
-        padding: 5px;
+        padding-bottom: 15px;
         font-family: $fontParagraph;
         cursor: pointer;
       }
