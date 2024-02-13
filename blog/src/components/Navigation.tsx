@@ -17,10 +17,10 @@ const Navigation = () => {
   );
   useEffect(() => {
     dispatch(fetchAllUsers());
-  }, [dispatch]);
+  }, [fetchAllUsers]);
   useEffect(() => {
     dispatch(fetchAllPosts());
-  }, [dispatch]);
+  }, [fetchAllPosts]);
   return (
     <BrowserRouter>
       <Header />

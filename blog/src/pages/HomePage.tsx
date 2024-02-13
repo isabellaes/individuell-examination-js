@@ -13,7 +13,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (currentUsers) setUsers(currentUsers);
-  }, [user]);
+  }, [currentUsers]);
 
   function handleSelectUser(user: User) {
     const posts = allPosts.filter((post) => post.userId === user.id);

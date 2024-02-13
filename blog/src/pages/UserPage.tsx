@@ -25,7 +25,6 @@ const UserPage = () => {
   const [statusMessage, setStatusMessage] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
-  const [actionStatus, setActionStatus] = useState<boolean | null>();
 
   const dispatch = useAppDispatch();
   const loggedInUser = useSelector(
@@ -34,19 +33,12 @@ const UserPage = () => {
   const statusmessage = useSelector(
     (state: RootState) => state.post.statusMessage
   );
-  const status = useSelector((state: RootState) => state.post.sucess);
 
   const allPosts = useSelector((state: RootState) => state.post.postsByUser);
 
   useEffect(() => {
     if (statusmessage) setStatusMessage(statusmessage);
   }, [statusmessage]);
-
-  useEffect(() => {
-    if (status) {
-      setActionStatus(status);
-    }
-  }, [status]);
 
   useEffect(() => {
     if (allPosts) setPosts(allPosts);
@@ -60,9 +52,6 @@ const UserPage = () => {
 
   function handleDelete(id: number) {
     dispatch(fetchDeletePost(id.toString()));
-    setTimeout(function () {
-      toggleSnackbar();
-    }, 500);
   }
 
   function handleUpdateTitle(title: string) {
@@ -93,9 +82,6 @@ const UserPage = () => {
     if (editPost) {
       dispatch(fetchUpdatePost(editPost));
       setEditFormModalOpen(false);
-      setTimeout(function () {
-        toggleSnackbar();
-      }, 500);
     }
   }
 
@@ -110,30 +96,7 @@ const UserPage = () => {
 
       dispatch(fetchCreatePost(newPost));
       setCreateFormModalOpen(false);
-      setTimeout(function () {
-        toggleSnackbar();
-      }, 500);
     }
-  }
-
-  function toggleSnackbar() {
-    var x = document.getElementById("snackbar") as HTMLElement;
-    if (actionStatus) {
-      x.classList.toggle("sucess");
-    } else {
-      x.classList.toggle("error");
-    }
-    x.classList.toggle("show");
-    setTimeout(function () {
-      //clear and hide snackbar
-      x.classList.toggle("show");
-      if (x.classList.contains("sucess")) {
-        x.classList.toggle("sucess");
-      }
-      if (x.classList.contains("error")) {
-        x.classList.toggle("error");
-      }
-    }, 3000);
   }
 
   return (

@@ -6,13 +6,11 @@ interface PostState {
   allPosts: Post[];
   postsByUser: Post[];
   statusMessage: string;
-  sucess: boolean | null;
 }
 
 const initialState: PostState = {
   allPosts: [],
   postsByUser: [],
-  sucess: null,
   statusMessage: "",
 };
 
@@ -94,25 +92,25 @@ const postSlice = createSlice({
           post.id === updatedPost.id ? updatedPost : post
         );
         state.statusMessage = "Post updated sucessfully";
-        state.sucess = true;
+        toggleSnackbar(true);
       }
     });
     builder.addCase(fetchUpdatePost.rejected, (state) => {
       state.statusMessage = "Something went wrong";
-      state.sucess = false;
+      toggleSnackbar(false);
     });
 
     builder.addCase(fetchCreatePost.fulfilled, (state, action) => {
       if (action.payload.status === 201 && "data" in action.payload) {
         state.postsByUser.push(action.payload.data);
         state.statusMessage = "Post created sucessfully";
-        state.sucess = true;
+        toggleSnackbar(true);
       }
     });
 
     builder.addCase(fetchCreatePost.rejected, (state) => {
       state.statusMessage = "Something went wrong";
-      state.sucess = false;
+      toggleSnackbar(false);
     });
 
     builder.addCase(fetchDeletePost.fulfilled, (state, action) => {
@@ -125,17 +123,36 @@ const postSlice = createSlice({
           );
 
           state.statusMessage = "Post deleted sucessfully";
-          state.sucess = true;
+          toggleSnackbar(true);
         }
       }
     });
 
     builder.addCase(fetchDeletePost.rejected, (state) => {
       state.statusMessage = "Something went wrong";
-      state.sucess = false;
     });
   },
 });
 
 export const { setPostsByUser } = postSlice.actions;
 export default postSlice.reducer;
+
+function toggleSnackbar(status: boolean) {
+  const snackbar = document.getElementById("snackbar") as HTMLElement;
+  if (status) {
+    snackbar.classList.toggle("sucess");
+  } else {
+    snackbar.classList.toggle("error");
+  }
+  snackbar.classList.toggle("show");
+  setTimeout(function () {
+    //clear and hide snackbar
+    snackbar.classList.toggle("show");
+    if (snackbar.classList.contains("sucess")) {
+      snackbar.classList.toggle("sucess");
+    }
+    if (snackbar.classList.contains("error")) {
+      snackbar.classList.toggle("error");
+    }
+  }, 3000);
+}
